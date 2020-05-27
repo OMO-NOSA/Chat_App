@@ -23,7 +23,7 @@ io.on("connection", (socket) => {
 
     );
 
-    //console.log(newEmail);
+
 
     socket.on("createMessage", (message) => {
         console.log("createMessage", message);
