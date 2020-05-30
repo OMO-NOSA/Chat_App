@@ -8,5 +8,5 @@ const generateMessage = (from, text) => {
 
 
 module.exports = {
-    generate
+    generateMessage
 };
