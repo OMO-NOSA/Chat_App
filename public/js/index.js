@@ -28,11 +28,12 @@ socket.emit('createMessage', {
 
 jQuery('#message-form').on('submit', function(e) {
     e.preventDefault();
-
     socket.emit('createMessage', {
         from: 'User',
         text: jQuery('[name=message]').val()
     }, function() {
 
     });
+
+    this.reset();
 });
