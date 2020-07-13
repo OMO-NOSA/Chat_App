@@ -9,7 +9,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 const port = process.env.PORT || 3000;
-const { generateMessage } = require("./utils/message");
+const { generateMessage, generateLocationMessage } = require("./utils/message");
 
 app.use(express.static(publicPath));
 
@@ -32,7 +32,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on('createLocationMessage', (coords) => {
-        io.emit('newMessage', generateMessage('Admin', `${coords.latitude}, ${coords.longitude}`))
+        io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitude, coords.longitude));
     });
 
     socket.on('disconnection', () => {
@@ -43,6 +43,7 @@ io.on("connection", (socket) => {
 
 
 server.listen(port, () =>
-    console.log(`Server is listening at http://localhost:${port}`)
+    console.log(`
+                                    Server is listening at http: //localhost:${port}`)
 );
 module.exports = { app };
