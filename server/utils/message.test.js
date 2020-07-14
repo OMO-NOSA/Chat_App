@@ -16,6 +16,8 @@ describe('generateMessages', () => {
         });
     });
 });
+
+
 describe('generateLocationMessage', () => {
     it('should generate correct message location', () => {
         let from = 'Nos';
