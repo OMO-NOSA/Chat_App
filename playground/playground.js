@@ -16,4 +16,14 @@ const readline = require('readline').createInterface({
 readline.question(`What's your name?`, name => {
     console.log(`Hi ${name}!`)
     readline.close()
-})
+});
+
+console.log(3 / 2);
+var randString = 'Let have, Sandwitch';
+randString = randString.replace(',', '|');
+console.log(randString);
+var life;
+let me = '';
+console.log(life);
+
+console.log(5 + 1 + '5');
