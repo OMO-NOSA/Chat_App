@@ -10,6 +10,7 @@ const server = http.createServer(app);
 const io = socketIO(server);
 const port = process.env.PORT || 3000;
 const { generateMessage, generateLocationMessage } = require("./utils/message");
+const { isRealString } = require("./utils/validation");
 
 app.use(express.static(publicPath));
 
@@ -18,7 +19,13 @@ io.on("connection", (socket) => {
     socket.emit('newMessage', generateMessage('Admin', 'Welcome to the Chat App'));
 
     socket.broadcast.emit("newMessage", ("Admin", "Someone new is here, say a big welcome"));
+    socket.on('join', (params, callback) => {
+        if (!isRealString(params.name) || !isRealString(params.room)) {
+            callback('Name and room name are required.');
+        }
 
+        callback();
+    });
     socket.on("createMessage", (message, callback) => {
         console.log("createMessage", message);
 
