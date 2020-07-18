@@ -15,15 +15,26 @@ class Users {
         return user;
     }
 
-    // removeUser(id) {
-    //     this.users.forEach(id) {
-    //         if (this.users.user.id === id) {
-    //             this.users.pop(user);
-    //         }
-    //     }
+    removeUser(id) {
+        let user = this.getUser(id);
+        if (user) {
+            this.users = this.users.filter((user) => user.id !== id);
+        }
 
-    //     return this.users;
-    // }
+        return user;
+    }
+
+    getUser(id) {
+        let user = this.users.filter((user) => user.id === id)[0]
+        return user;
+    }
+
+    getUserList(room) {
+        let users = this.users.filter((user) => user.room === room)
+        let namesArray = users.map((user) => user.name);
+
+        return namesArray;
+    }
 }
 
 module.exports = { Users }
