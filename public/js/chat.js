@@ -21,6 +21,7 @@ const scrollToButtom = () => {
 socket.on("connect", function() {
     console.log("connected to server");
     let params = jQuery.deparam(window.location.search);
+
     socket.emit('join', params, (err) => {
         if (err) {
             alert(err);
@@ -92,17 +93,16 @@ socket.on('newLocationMessage', function(message) {
     //     jQuery('#messages').append(li);
 });
 
-socket.emit('createMessage', {
-    from: 'Frank',
-    text: 'Hi'
-}, function() {
-    console.log('Got it!')
-});
+// socket.emit('createMessage', {
+//     from: 'Frank',
+//     text: 'Hi'
+// }, function() {
+//     console.log('Got it!')
+// });
 
 jQuery('#message-form').on('submit', function(e) {
     e.preventDefault();
     socket.emit('createMessage', {
-        from: 'User',
         text: jQuery('[name=message]').val()
     }, function() {
 
