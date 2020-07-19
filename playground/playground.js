@@ -27,3 +27,9 @@ let me = '';
 console.log(life);
 
 console.log(5 + 1 + '5');
+
+
+
+const isDuplicate = (arr) => {
+    arr.forEach((name, room) => {})
+}
