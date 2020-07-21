@@ -87,9 +87,22 @@ getGrade(4040).then((grades) => {
 
 
 const getStatus = (userId) => {
-    return getUser(userId).then((user) => {
-        return getGrades(user.schoolId);
+    let user;
+    return getUser(userId).then((tempUser) => {
+        user = tempUser;
+        return getGrade(user.schoolId);
     }).then((grades) => {
+        let average = 0;
+        if (grades.length > 0) {
+            average = grades.map((grade) => grade.grade).reduce((a, b) => a + b) / grades.length;
+        }
+        return `${user.name} has a ${average}% in the class.`;
+        console.log(average);
+    });
+};
 
-    })
-}
+getStatus(2).then((status) => {
+    console.log(status);
+}).catch((e) => {
+    console.log(e);
+});
